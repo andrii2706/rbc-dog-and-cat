@@ -1,0 +1,16 @@
+.footer{
+  background: black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+
+  .developer-cv > a{
+    color: white;
+    text-decoration: none;
+    &:hover{
+      transition: 800ms;
+      color: #C4C4C4;
+    }
+  }
+}

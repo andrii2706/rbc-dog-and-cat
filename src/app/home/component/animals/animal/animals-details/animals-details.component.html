@@ -1,0 +1,23 @@
+<section *ngIf="animalDetails">
+  <div >
+    <div> <ul>
+      <li>{{animalDetails.name}}</li>
+      <li>{{animalDetails.gender}}</li>
+      <li>{{animalDetails.age}}</li>
+      <li>{{animalDetails.breed}}</li>
+      <li *ngIf="animalDetails.avaliable">on Hold</li>
+      <li *ngIf="!animalDetails.avaliable">You can have me like your pet</li>
+    </ul></div>
+    <div>
+      <img src="{{animalDetails.img}}" alt="animal img">
+    </div>
+  </div>
+  <div>
+    <p>{{animalDetails.description}}</p>
+    <div>
+      <p>{{animalDetails.address}}</p>
+      <p>{{animalDetails.country}}</p>
+      <p>{{animalDetails.dayOfBirthd}}</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,19 @@
+.animals{
+  display: grid;
+  grid-template-columns: 400px 400px 400px;
+  grid-gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.flex-center{
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-end{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px;
+}

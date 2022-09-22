@@ -1,0 +1,16 @@
+.animal-card{
+  width: 350px;
+  background-color: #C4C4C4;
+  ::ng-deep .mat-card-image{
+    width: 381px;
+    height: 248px;
+  }
+  .chose-btn{
+    background-color: #1D1D1E;
+    color: beige;
+    &:hover{
+      transition: 800ms;
+      opacity: 75%;
+    }
+  }
+}

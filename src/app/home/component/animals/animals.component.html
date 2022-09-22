@@ -1,0 +1,27 @@
+<section>
+  <div class="flex-end">
+    <mat-form-field>
+      <mat-label>Search</mat-label>
+      <input matInput type="text" [(ngModel)]="search">
+      <button *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="search=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div class="flex-end">
+    <form [formGroup]="gender" (ngSubmit)="submit()">
+      <input type="radio" id="all" value="all" formControlName="genderOfAnimal" (change)="changeGender($event)">
+      <label for="all">All</label>
+      <input type="radio" id="male" value="male" formControlName="genderOfAnimal" (change)="changeGender($event)">
+      <label for="male">Male</label>
+      <input type="radio" id="female" value="female" formControlName="genderOfAnimal" (change)="changeGender($event)">
+      <label for="female">Female</label>
+    </form>
+  </div>
+  <div class="animals">
+        <app-animal *ngFor="let animal of animals | filter: search  | paginate: config" [animal]="animal"></app-animal>
+  </div>
+  <div class="flex-center">
+    <pagination-controls (pageChange)="pageChange($event)"></pagination-controls>
+  </div>
+</section>
