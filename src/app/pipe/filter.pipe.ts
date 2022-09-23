@@ -12,10 +12,10 @@ export class FilterPipe implements PipeTransform {
 
    const animals = [];
     for (const animal of value) {
-      if (animal['name'] === search || animal['breed'] === search){
+      if (animal['name'].toLowerCase().includes(search.toLowerCase()) || animal['breed'].toLowerCase().includes(search.toLowerCase())){
         animals.push(animal);
     }
+  }
     return  animals;
   }
-}
 }

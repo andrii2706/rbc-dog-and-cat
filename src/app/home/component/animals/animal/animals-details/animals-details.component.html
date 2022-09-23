@@ -1,23 +1,31 @@
 <section *ngIf="animalDetails">
-  <div >
+  <button (click)="buttonBack()" mat-button mat-icon-button><mat-icon>keyboard_arrow_left</mat-icon></button>
+  <div class="flex-center">
     <div> <ul>
       <li>{{animalDetails.name}}</li>
-      <li>{{animalDetails.gender}}</li>
-      <li>{{animalDetails.age}}</li>
-      <li>{{animalDetails.breed}}</li>
-      <li *ngIf="animalDetails.avaliable">on Hold</li>
-      <li *ngIf="!animalDetails.avaliable">You can have me like your pet</li>
-    </ul></div>
+      <li>Gender: {{animalDetails.gender}}</li>
+      <li>Age: {{animalDetails.age}}</li>
+      <li>Breed: {{animalDetails.breed}}</li>
+      <li>Address: {{animalDetails.address}}</li>
+      <li>Country: {{animalDetails.country}}</li>
+      <li>Day Of Birth: {{animalDetails.dayOfBirthd}}</li>
+      <li>Type of animal: {{animalDetails.type}}</li>
+      <li>
+        <button [disabled]="!this.animalDetails.avaliable" (click)="ChoseYourAnimal()"
+                mat-button  mat-flat-button color="primary">on Hold</button>
+      </li>
+      <li>
+        <button [disabled]="this.animalDetails.avaliable"  (click)="ChoseYourAnimal()"
+                mat-button  mat-flat-button color="primary">Adoubt Me</button>
+      </li>
+    </ul>
+    </div>
     <div>
       <img src="{{animalDetails.img}}" alt="animal img">
     </div>
   </div>
   <div>
     <p>{{animalDetails.description}}</p>
-    <div>
-      <p>{{animalDetails.address}}</p>
-      <p>{{animalDetails.country}}</p>
-      <p>{{animalDetails.dayOfBirthd}}</p>
-    </div>
+
   </div>
 </section>

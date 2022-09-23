@@ -4,6 +4,7 @@ import {AnimalsService} from "../../service/animals.service";
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
+import {ChangeDetection} from "@angular/cli/lib/config/workspace-schema";
 
 @Component({
   selector: 'app-animals',
@@ -20,6 +21,9 @@ export class AnimalsComponent implements OnInit {
   female: string = '';
   gender = new FormGroup({
     genderOfAnimal: new FormControl('')
+  });
+  type = new FormGroup({
+    typeOfAnimal: new FormControl('')
   });
   constructor(public animalsService:AnimalsService, private route: ActivatedRoute, private router: Router) {
     this.config = {
@@ -41,17 +45,33 @@ export class AnimalsComponent implements OnInit {
   }
 
   getAnilmals(){
-    this.animalsService.getAllCats().subscribe(animals => {this.animals = animals;
-    })
+    this.animalsService.getAllCats().subscribe(animals => {this.animals = animals;})
 
   }
   changeGender(e:any) {
-    this.animals.filter(filteredValue => {
+   this.animals.filter(filteredValue => {
       if(e.target.value === filteredValue.gender) {
-        console.log(filteredValue);
-
+     this.animalsService.filterAnimalsByGender(filteredValue.gender).subscribe(
+       filterValue => {
+         this.animals = filterValue
+       }
+     )
       } else if (e.target.value === 'all'){
-        console.log(filteredValue);
+        this.getAnilmals();
+      }
+    })
+  }
+
+  changeType(e:any){
+    this.animals.filter(filteredValue => {
+      if (e.target.value === filteredValue.type){
+        this.animalsService.filterAnimalsByType(filteredValue.type).subscribe(
+          filteredType =>{
+            this.animals = filteredType
+          }
+        )
+      } else if (e.target.value === 'all'){
+        this.getAnilmals();
       }
     })
   }

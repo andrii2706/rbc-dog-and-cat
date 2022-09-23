@@ -8,15 +8,12 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./animal.component.scss']
 })
 export class AnimalComponent implements OnInit {
-@Input() animal: Animals
+  @Input() animal: Animal
   constructor(private router: Router,
               private activatedRouter: ActivatedRoute) { }
-  @Output()
-  data: EventEmitter<Animal> = new EventEmitter<Animal>()
   ngOnInit(): void {
   }
   showAnimalDetails(){
-    this.data.emit(this.animal)
-    this.router.navigate([this.animal?.id], {relativeTo:this.activatedRouter})
+    this.router.navigate([this.animal.id], {relativeTo:this.activatedRouter})
   }
 }

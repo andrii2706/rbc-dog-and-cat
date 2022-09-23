@@ -17,6 +17,14 @@
       <input type="radio" id="female" value="female" formControlName="genderOfAnimal" (change)="changeGender($event)">
       <label for="female">Female</label>
     </form>
+    <form [formGroup]="type">
+      <input type="radio" id="allType" value="all" formControlName="typeOfAnimal" (change)="changeType($event)">
+      <label for="allType">All</label>
+      <input type="radio" id="dog" value="dog" formControlName="typeOfAnimal" (change)="changeType($event)">
+      <label for="dog">Dogs</label>
+      <input type="radio" id="cat" value="cat" formControlName="typeOfAnimal" (change)="changeType($event)">
+      <label for="cat">Cats</label>
+    </form>
   </div>
   <div class="animals">
         <app-animal *ngFor="let animal of animals | filter: search  | paginate: config" [animal]="animal"></app-animal>

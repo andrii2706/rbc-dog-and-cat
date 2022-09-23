@@ -14,7 +14,6 @@ import {HomeComponent} from "./home/component/home/home.component";
 import { NotificationComponent } from './notification/notification/notification.component';
 import {HttpClientModule} from "@angular/common/http";
 import {MatDialogModule} from "@angular/material/dialog";
-import { CardOfAnimalComponent } from './home/component/card-of-animal/card-of-animal.component';
 import {NavigationComponent} from "./navigation/navigation.component";
 import { AnimalsComponent } from './home/component/animals/animals.component';
 import {FilterPipe} from "./pipe/filter.pipe";
@@ -23,6 +22,8 @@ import { AnimalComponent } from './home/component/animals/animal/animal.componen
 import { AnimalsDetailsComponent } from './home/component/animals/animal/animals-details/animals-details.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {NgxPaginationModule} from "ngx-pagination";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { AvaliableAnimalComponent } from './avaliable-animal/avaliable-animal.component';
 
 @NgModule({
   declarations: [
@@ -31,15 +32,16 @@ import {NgxPaginationModule} from "ngx-pagination";
     HomeComponent,
     FooterComponent,
     NotificationComponent,
-    CardOfAnimalComponent,
     NavigationComponent,
     AnimalsComponent,
     FilterPipe,
     AnimalComponent,
-    AnimalsDetailsComponent
+    AnimalsDetailsComponent,
+    AvaliableAnimalComponent
   ],
   imports: [
     MatDialogModule,
+    MatSnackBarModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
