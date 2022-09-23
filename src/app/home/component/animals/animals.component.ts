@@ -81,6 +81,6 @@ export class AnimalsComponent implements OnInit {
   }
 
   submit(){
-    console.log(this.gender.value);
+    return this.gender.value
   }
 }
