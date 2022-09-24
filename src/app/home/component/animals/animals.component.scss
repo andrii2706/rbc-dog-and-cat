@@ -12,9 +12,12 @@
   align-items: center;
 }
 .flex-end{
+  &:nth-child(2){
+    padding: 20px 250px 40px 250px;
+  }
   display: flex;
   justify-content: center;
   align-items: flex-end;
   flex-direction: column;
-  padding: 20px;
+  padding: 20px 250px 0 250px;
 }

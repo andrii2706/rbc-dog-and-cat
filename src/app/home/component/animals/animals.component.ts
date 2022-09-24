@@ -18,10 +18,10 @@ export class AnimalsComponent implements OnInit {
   pageEvent!: PageEvent ;
   all: string = '';
   gender = new FormGroup({
-    genderOfAnimal: new FormControl('')
+    genderOfAnimal: new FormControl('all')
   });
   type = new FormGroup({
-    typeOfAnimal: new FormControl('')
+    typeOfAnimal: new FormControl('all')
   });
   constructor(public animalsService:AnimalsService, private route: ActivatedRoute, private router: Router) {
     const config = {
@@ -39,16 +39,15 @@ export class AnimalsComponent implements OnInit {
     this.getAnilmals()
   }
 
-  pageChange(newPage: number) {
+  pageChange(newPage: number)  : void {
     this.router.navigate(['/animals'], { queryParams: { page: newPage } });
   }
 
   getAnilmals(){
     this.animalsService.getAllCats().subscribe(animals => {this.animals = animals;})
-
   }
-  changeGender(e: Event) {
-    this.animals.filter(filteredValue => {
+  changeGender(e: Event): void {
+     this.animals.forEach(filteredValue => {
       if((e.target as HTMLInputElement).value === filteredValue.gender) {
      this.animalsService.filterAnimalsByGender(filteredValue.gender).subscribe(
        filterValue => {
@@ -61,8 +60,8 @@ export class AnimalsComponent implements OnInit {
     })
   }
 
-  changeType(e:Event){
-    this.animals.filter(filteredValue => {
+  changeType(e:Event) : void{
+    this.animals.forEach(filteredValue => {
       if ((e.target as HTMLInputElement).value === filteredValue.type){
         this.animalsService.filterAnimalsByType(filteredValue.type).subscribe(
           filteredType =>{
@@ -75,7 +74,7 @@ export class AnimalsComponent implements OnInit {
     })
   }
 
-  get f(){
+  get f() {
     return this.gender.controls;
   }
 
