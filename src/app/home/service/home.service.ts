@@ -9,7 +9,7 @@ import {Animals} from "../interfaces/Animals";
   providedIn: 'root'
 })
 export class HomeService {
-  private homeUrl = '/home';
+  private homeUrl = '/homes';
   constructor(private httpClient:HttpClient) { }
   getHomeInfo(): Observable<HomeInterface[]>{
     return this.httpClient.get<HomeInterface[]>(`${environment.API}${this.homeUrl}`)

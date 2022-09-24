@@ -1,10 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {Animals, Params} from "../../interfaces/Animals";
+import {Component, OnInit} from '@angular/core';
+import {Animals } from "../../interfaces/Animals";
 import {AnimalsService} from "../../service/animals.service";
-import {MatPaginator, PageEvent} from "@angular/material/paginator";
+import { PageEvent} from "@angular/material/paginator";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
-import {ChangeDetection} from "@angular/cli/lib/config/workspace-schema";
+
 
 @Component({
   selector: 'app-animals',
@@ -13,12 +13,10 @@ import {ChangeDetection} from "@angular/cli/lib/config/workspace-schema";
 })
 export class AnimalsComponent implements OnInit {
   animals : Animals[] = [];
-  config: any;
-  search: string = '';
+  search: string = ''
+  config :Object
   pageEvent!: PageEvent ;
   all: string = '';
-  male:string = '' ;
-  female: string = '';
   gender = new FormGroup({
     genderOfAnimal: new FormControl('')
   });
@@ -26,13 +24,14 @@ export class AnimalsComponent implements OnInit {
     typeOfAnimal: new FormControl('')
   });
   constructor(public animalsService:AnimalsService, private route: ActivatedRoute, private router: Router) {
-    this.config = {
+    const config = {
       currentPage: 1,
       itemsPerPage: 10,
       totalItems:0
     };
+    this.config = config;
     this.route.queryParams.subscribe(
-      params =>{this.config.currentPage= params['page']?params['page']:1
+      params =>{config.currentPage= params['page']?params['page']:1
         } );
 
   }
@@ -48,29 +47,29 @@ export class AnimalsComponent implements OnInit {
     this.animalsService.getAllCats().subscribe(animals => {this.animals = animals;})
 
   }
-  changeGender(e:any) {
-   this.animals.filter(filteredValue => {
-      if(e.target.value === filteredValue.gender) {
+  changeGender(e: Event) {
+    this.animals.filter(filteredValue => {
+      if((e.target as HTMLInputElement).value === filteredValue.gender) {
      this.animalsService.filterAnimalsByGender(filteredValue.gender).subscribe(
        filterValue => {
          this.animals = filterValue
        }
      )
-      } else if (e.target.value === 'all'){
+      } else if ((e.target as HTMLInputElement).value === 'all'){
         this.getAnilmals();
       }
     })
   }
 
-  changeType(e:any){
+  changeType(e:Event){
     this.animals.filter(filteredValue => {
-      if (e.target.value === filteredValue.type){
+      if ((e.target as HTMLInputElement).value === filteredValue.type){
         this.animalsService.filterAnimalsByType(filteredValue.type).subscribe(
           filteredType =>{
             this.animals = filteredType
           }
         )
-      } else if (e.target.value === 'all'){
+      } else if ((e.target as HTMLInputElement).value === 'all'){
         this.getAnilmals();
       }
     })

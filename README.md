@@ -25,3 +25,8 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+ 
+## To get data from  backend you need to download json server and add file witch I left in  folder fake date 
+To start server you need to set this command: 
+json-server testinfo.js --port 4000
+!!! Before using this command you need to copy file into core of project your file must be on the level with db.json file.
