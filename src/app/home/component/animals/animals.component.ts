@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Animals } from "../../interfaces/Animals";
 import {AnimalsService} from "../../service/animals.service";
 import { PageEvent} from "@angular/material/paginator";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
+import {Subject} from "rxjs";
+import {takeUntil} from "rxjs/operators";
 
 
 @Component({
@@ -11,7 +13,8 @@ import {FormControl, FormGroup} from "@angular/forms";
   templateUrl: './animals.component.html',
   styleUrls: ['./animals.component.scss']
 })
-export class AnimalsComponent implements OnInit {
+export class AnimalsComponent implements OnInit, OnDestroy {
+  destroy$ = new Subject()
   animals : Animals[] = [];
   search: string = ''
   config :Object
@@ -44,12 +47,12 @@ export class AnimalsComponent implements OnInit {
   }
 
   getAnilmals(): void{
-    this.animalsService.getAllCats().subscribe(animals => {this.animals = animals;})
+    this.animalsService.getAllCats().pipe(takeUntil(this.destroy$)).subscribe(animals => {this.animals = animals;})
   }
   changeGender(e: Event): void {
      this.animals.forEach(filteredValue => {
       if((e.target as HTMLInputElement).value === filteredValue.gender) {
-     this.animalsService.filterAnimalsByGender(filteredValue.gender).subscribe(
+     this.animalsService.filterAnimalsByGender(filteredValue.gender).pipe(takeUntil(this.destroy$)).subscribe(
        filterValue => {
          this.animals = filterValue
        }
@@ -72,6 +75,10 @@ export class AnimalsComponent implements OnInit {
         this.getAnilmals();
       }
     })
+  }
+  ngOnDestroy(){
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
 }
