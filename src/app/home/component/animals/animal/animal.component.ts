@@ -13,7 +13,7 @@ export class AnimalComponent implements OnInit {
               private activatedRouter: ActivatedRoute) { }
   ngOnInit(): void {
   }
-  showAnimalDetails(){
+  showAnimalDetails(): void{
     this.router.navigate([this.animal.id], {relativeTo:this.activatedRouter})
   }
 }

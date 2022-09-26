@@ -43,7 +43,7 @@ export class AnimalsComponent implements OnInit {
     this.router.navigate(['/animals'], { queryParams: { page: newPage } });
   }
 
-  getAnilmals(){
+  getAnilmals(): void{
     this.animalsService.getAllCats().subscribe(animals => {this.animals = animals;})
   }
   changeGender(e: Event): void {
@@ -74,11 +74,4 @@ export class AnimalsComponent implements OnInit {
     })
   }
 
-  get f() {
-    return this.gender.controls;
-  }
-
-  submit(){
-    return this.gender.value
-  }
 }

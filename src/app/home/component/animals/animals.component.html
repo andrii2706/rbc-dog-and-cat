@@ -9,7 +9,7 @@
     </mat-form-field>
   </div>
   <div class="flex-end">
-    <form [formGroup]="gender" (ngSubmit)="submit()">
+    <form [formGroup]="gender">
       <input type="radio" id="all" value="all" formControlName="genderOfAnimal" (change)="changeGender($event)">
       <label for="all">All</label>
       <input type="radio" id="male" value="male" formControlName="genderOfAnimal" (change)="changeGender($event)">

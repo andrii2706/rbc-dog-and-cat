@@ -30,23 +30,24 @@ export class AnimalsDetailsComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  openNotification(){
+  openNotification(): void {
     this.dialog.open(AvaliableAnimalComponent, {
-      width: '200px'
+      width: '400px'
     })
   }
-    ChoseYourAnimal(){
+    ChoseYourAnimal(): void{
     if(this.animalDetails!.avaliable != undefined){
       this.animalDetails!.avaliable = !this.animalDetails!.avaliable
       if(this.animalDetails!.avaliable){
         this._snackBar.open('Our manager will call you', 'Close')
-      }else {
-        this.openNotification();
       }
     }
     }
-  buttonBack(){
+  buttonBack(): void {
     history.back();
   }
 
+  onHold(): void {
+    this.openNotification();
+  }
 }

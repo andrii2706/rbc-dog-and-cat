@@ -14,7 +14,7 @@ export class AvaliableAnimalComponent implements OnInit {
   ngOnInit(): void {
     this.close()
   }
-  close(){
-    timer(1000).subscribe(res=> this.dialogRef.close())
+  close() :void{
+    timer(2000).subscribe(res=> this.dialogRef.close())
   }
 }

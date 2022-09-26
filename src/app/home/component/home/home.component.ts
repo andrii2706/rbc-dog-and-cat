@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
     });
     timer(1000).subscribe(res => dialogRef.close(),err=> null, () => console.warn("DialogClose"))
   }
-  getHomeInfo(){
+  getHomeInfo() :void{
   this.homeService.getHomeInfo().subscribe(info =>{this.home = info}, error => this.openDialog())
   }
 }

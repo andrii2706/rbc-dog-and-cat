@@ -11,7 +11,7 @@
       <li>Day Of Birth: {{animalDetails.dayOfBirthd}}</li>
       <li>Type of animal: {{animalDetails.type}}</li>
       <li>
-        <button [disabled]="!this.animalDetails.avaliable" (click)="ChoseYourAnimal()"
+        <button [disabled]="!this.animalDetails.avaliable" (click)="onHold()"
                 mat-button  mat-flat-button color="primary">on Hold</button>
       </li>
       <li>
